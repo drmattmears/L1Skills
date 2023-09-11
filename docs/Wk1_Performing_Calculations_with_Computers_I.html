@@ -1,0 +1,658 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performing Calculations with Computers I &#8212; PHYS11006 - Computing Skills Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Wk1_Performing_Calculations_with_Computers_I';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Measurements, Errors and Uncertainty" href="Wk1_Measurements_Errors_and_Uncertainty.html" />
+    <link rel="prev" title="Welcome to PHYS11006 Computing Skills" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to PHYS11006 Computing Skills
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Performing Calculations with Computers I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Measurements_Errors_and_Uncertainty.html">Measurements, Errors and Uncertainty</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Performing_Calculations_with_Computers_II.html">Performing Calculations with Computers II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Functions_and_Modules.html">Functions and Modules</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Conditional_Statements_and_Loops.html">Conditional Statements and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Visualising_Data_and_Linear_Regression.html">Visualising Data and Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk4_Simple_Linear_Regression.html">Simple Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Solving_Coding_Problems.html">Solving Coding Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Artificial_Intelligence.html">Artificial Intelligence (AI)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk6_Computing_Skills_Assessment.html">Computing Skills Assessment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FWk1_Performing_Calculations_with_Computers_I.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Wk1_Performing_Calculations_with_Computers_I.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Performing Calculations with Computers I</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computers-as-calculators">Computers as Calculators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-sheets">Google Sheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-python-interpreter">The Python Interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Google Sheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-interpreter">Python Interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="performing-calculations-with-computers-i">
+<h1>Performing Calculations with Computers I<a class="headerlink" href="#performing-calculations-with-computers-i" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<div class="section" id="learning-objectives">
+<h2>Learning Objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>To understand why computers are useful tools for performing calculations and analysis.</p></li>
+<li><p>To be able to use various different computing tools to perform calculations.</p></li>
+<li><p>To become familiar with Python environments.</p></li>
+<li><p>To be able to apply computing skills to solve physics related problems.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>As scientists it is important that we are able to use appropriate computing tools in our work.  Computers allow us to perform correct and efficient data analysis, to create plots to help us better visualise information, provide a means of controlling equipment used in experimentation and allow us to simulate physical systems so that we may make cogent predictions in real world situations. Of course our use of computers is not limited to these sorts of activities, but these are solid examples of the sorts of tasks you will come across in your career as a Physicist.</p>
+<p>Each of the example tasks mentioned above could be performed using traditional means, for example using hand-written calculations and building scale models, but there are clear disadvantages of taking these approaches:</p>
+<ul class="simple">
+<li><p><strong>Humans are prone to making mistakes</strong> - it would be easy to copy the number 3.4456123 from our calculator as 3.4456213 without realising our mistake, perhaps we accidentally drop a minus sign or neglect a set of brackets in a complex formula…</p></li>
+<li><p><strong>Humans are slow</strong> - I am sure that if I asked you to perform 1000 sequential calculations as part of a data analysis project you would be able to do so, but this would take up a lot of your time, time that could be better spent working on something else. Furthermore, how would you feel if I told you that a variable used in the 2nd calculation needed changing and all of the work needed repeating?</p></li>
+<li><p><strong>Humans do not enjoy laborious and repetitive tasks</strong> - You probably wouldn’t be too impressed with me if I assigned a homework task that asked you to do the same exercise 1,000,000 times…</p></li>
+</ul>
+<p>In contrast to humans, a computer will not accidentally make calculation mistakes, they can perform certain tasks in a fraction of the time it would take us to complete them and they are quite happy to iterate and repeat processes an undefined number of times. It is clear why it is advantageous to learn how to effectively use computational tools and integrate them into our workflow.</p>
+<p>In this session (and throughout the semester) you are going to be introduced to various computational tools and techniques that you will use throughout your studies. Investing in these skills early in your academic career is of the utmost importance as they will form the basis for the remainder of your degree programme.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="computers-as-calculators">
+<h2>Computers as Calculators<a class="headerlink" href="#computers-as-calculators" title="Permalink to this heading">#</a></h2>
+<p>As an exercise to get to grips with a few of the different computing tools we can use to perform calculations, we will complete a series of exercises using three different tools: <strong>Google Sheets</strong>, the <strong>Python Interpreter</strong> and a <strong>Jupyter Notebook</strong>.</p>
+<p>The exercises to complete this session are provided following the overview of the tools you  will be using.</p>
+<div class="section" id="google-sheets">
+<h3>Google Sheets<a class="headerlink" href="#google-sheets" title="Permalink to this heading">#</a></h3>
+<p>Google sheets is an online spreadsheet program (like Microsoft Excel) that can be used to efficiently perform calculations and visualise trends in the form of graphs. Numbers can be directly entered into cells and calculations can be performed using these numbers by writing a formula that references the cell. When performing a calculation in a cell, you must begin the formula with an equals sign. An advantage of using a spreadsheet is that you only need to type a formula once to perform many calculations.</p>
+<p>An example of the way we can perform calculations is provided in the GIF below:</p>
+<img alt="fishy" class="bg-primary mb-1 align-center" src="_images/GoogleSlides.gif" />
+<p>Built into Google Sheets are many pre-made functions that can perform calculations for you, for example, you can calculate the average of a set of numbers using the =average() function. You can search for any of the functions you may need <a class="reference external" href="https://support.google.com/docs/table/25273?hl=en-GB">here</a>. The documentation tells you what a function does and even provides examples of how to use them if you are unsure.</p>
+<p>If you would like to use one value in many calculations, in your formula you can reference the same fixed cell by putting a dollar sign before the cell letter and then another before the cells number when writing your formula.</p>
+</div>
+<div class="section" id="the-python-interpreter">
+<h3>The Python Interpreter<a class="headerlink" href="#the-python-interpreter" title="Permalink to this heading">#</a></h3>
+<p>One of the skills that you will learn over the course of this block is how to use Python. Python is a high-level programming language that can be used in web development, task automation, data analysis and visualisation, and many more activities. It is a widely used language in science as it is freely available, open source and very flexible in the way that it can be used.</p>
+<p>The Python interpreter is a tool that reads the code we write in Python and executes it for us. We can write commands directly into the interpreter and this is very useful when we would like to perform simple calculations. We will use more sophisticated tools when running more complex Python codes.</p>
+<p>To open the Python interpreter we need to ensure that Python is installed on the computer that we are using (all of the computers in the lab should have Python installed already). The easiest way to do this is to open the terminal, type “python” and press enter. If Python is installed the version number will appear and the interpreter will open. From this point we can type commands after “&gt;&gt;&gt;”, for example, in the GIF you will see me use the print() command.</p>
+<p><img alt="image" src="_images/CheckingPython.gif" /></p>
+<p>If you would like to install Python onto your own computer, the easiest way to do this is by downloading Anaconda. Installation is simple and once complete you will have access to Python from your computer’s terminal or by opening <a class="reference external" href="https://www.anaconda.com/">Anaconda</a>. Within Anaconda you can use many other Python based programs such as SpyderIDE or Jupyter Notebooks etc.</p>
+<p>Once we have opened the interpreter we can start to type in basic python commands or return the answers to basic calculations. The mathematical operations are similar those used in Google Sheets (add is “+”, and divide is “/” etc.), however there are some differences, for example, to raise something to the power in Python we use “**” rather than “^”.</p>
+<p>A few examples of the basic calculations you may wish to perform using the interpreter are shown in the GIF below. Spend some time becoming familiar with the interpreter - perform some basic calculations, look at any error messages that it outputs and try to understand what they mean etc.</p>
+<p><img alt="image" src="_images/PythonInterpreterCalcs.gif" /></p>
+<p>In many cases we want to save information to be used later. This can be achieved using a variable (more on this next week). You may assign a variable a value in the interpreter by typing the name of the variable and setting it equal to its value (e.g. &gt;&gt;&gt; A = 6). This can now be used in calculations. We can reassign the value of the variable at any time by simply setting it equal to another value - give this a go! Type the following into your interpreter (without the #’s) and see what happens.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A = 6</span>
+<span class="c1"># A</span>
+
+<span class="c1"># A * 5  </span>
+
+<span class="c1"># A = 7</span>
+<span class="c1"># A</span>
+
+<span class="c1"># A = A + 1</span>
+<span class="c1"># A</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="jupyter-notebooks">
+<h3>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this heading">#</a></h3>
+<p>There are lots of ways we can get a computer to read and execute the Python code we write, but a great tool to use is the Jupyter Notebook. One of the key advantages of using a Jupyter notebook is that we can execute blocks of code and see the output before running another block. Additionally, the notebook can be interlaced with text and equations in a clear way that does not interfere with our code. This makes it easier to understand what our code is doing or how it is related to the topic we are covering. These notebooks will form the basis of how Python is taught in these workshops.</p>
+<p>Although we can save Jupyter notebooks locally on our computer (included in Anaconda), we can also use them in the cloud using CoCalc. Cocalc is an online tool that will be used to share the notebooks used in these sessions and where you are free to do your work.</p>
+<p>To create a new notebook, simply log on to Cocalc, open a project, press the “new” button in the CoCalc toolbar, enter the name of your new file and select notebook, then confirm that you would like it to interpret Python. Once you have created your notebook, you can enter code into a cell and execute it by pressing “run” in the toolbar. The output will be shown directly below the cell.</p>
+<p><img alt="image" src="_images/CoCalc_Notebook.gif" /></p>
+<p>Spend some time familiarising yourself with this new coding environment. Perform some calculations and run the cells and see what they output. Try to get into the habit of organising different sections of your code in different cells - tidy code is much easier to read and debug, and by splitting sections of code into different cells you will be able to quickly identify where your code may be breaking. <strong>Important note: the computer will read and execute your code line by line in order - ensure that any terms used are defined before they are called.</strong></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="activities">
+<h2>Activities<a class="headerlink" href="#activities" title="Permalink to this heading">#</a></h2>
+<p>The following activities have been designed for you to get to grips with the different tools discussed above. The problems provided are related to the content you have coveed in your mechanics lecture this week.</p>
+<div class="section" id="id1">
+<h3>Google Sheets<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>A projectile is launched with an initial velocity of <span class="math notranslate nohighlight">\(17.05 \,ms^{-1}\)</span> at an angle of <span class="math notranslate nohighlight">\(63\)</span> degrees relative to the horizontal plane. The projectile follows a parabolic path according to:</p>
+<div class="math notranslate nohighlight">
+\[
+y = x \tan{\theta}-\frac{gx^2}{2v_0^2 \cos^2{\theta}} 
+\]</div>
+<ol class="arabic simple">
+<li><p>Determine the maximum vertical height reached by the projectile using SUVAT.</p></li>
+<li><p>Determine the maximum horizontal distance the projectile travels.</p></li>
+<li><p>Use the projectile equation to determine the height of the projectile as a function of the horizontal distance travelled by the projectile up to the maximum horizontal distance travelled (to the nearest m). Start at a horizontal displacement of <span class="math notranslate nohighlight">\(0\,m\)</span> and increase in increments of <span class="math notranslate nohighlight">\(1\,m\)</span>.</p></li>
+<li><p>Plot the height of the projectile as a function of the horizontal distance travelled.</p></li>
+</ol>
+<p><em>Hints: Google Sheets requires angles to be in radians. For part 4, the easiest way to do this in Google Sheets is to highlight your x and y data and select the “insert chart” icon from the toolbar.</em></p>
+</div>
+<div class="section" id="python-interpreter">
+<h3>Python Interpreter<a class="headerlink" href="#python-interpreter" title="Permalink to this heading">#</a></h3>
+<p>A cannonball is launched directly upwards with an initial velocity of <span class="math notranslate nohighlight">\(45 \, ms^{-1}\)</span>. Acceleration due to gravity is equal to <span class="math notranslate nohighlight">\(9.81\, ms^{-2}\)</span>. Using the SUVAT equations:</p>
+<ol class="arabic simple">
+<li><p>Calculate the velocity of the cannon ball <span class="math notranslate nohighlight">\(4\)</span> seconds after launch.</p></li>
+<li><p>Calculate the maximum height that the cannonball reaches.</p></li>
+<li><p>Calculate the time it takes for the cannon ball to hit the ground.</p></li>
+<li><p>Acceleration due to gravity on Mars is <span class="math notranslate nohighlight">\(3.71 \, ms^{-1}\)</span>.</p></li>
+</ol>
+<p>The cannon appears on Mars for some reason. Repeat the calculations for (1) &amp; (2).</p>
+<p><em>Hint: Pressing the up arrow key shows the previous things typed into the interpreter, you can then navigate through the text using the left and right arrow keys to edit the calculations.</em></p>
+</div>
+<div class="section" id="jupyter-notebook">
+<h3>Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this heading">#</a></h3>
+<p>This time a projectile is launched with an initial velocity of <span class="math notranslate nohighlight">\(120 \, ms^{-1}\)</span> at an angle of <span class="math notranslate nohighlight">\(47\)</span> degrees relative to the horizontal plane of a platform 11 m above the ground. Once again:</p>
+<ol class="arabic simple">
+<li><p>Determine the maximum vertical height reached by the projectile (relative to the ground).</p></li>
+<li><p>Calculate the maximum horizontal distance that the projectile travels.</p></li>
+<li><p>Use the projectile equation to determine the height of the projectile as a function of the horizontal distance travelled by the projectile (use 5 horizontal distances <span class="math notranslate nohighlight">\(x = 200\,m, 500\,m, 800\,m, 1100\,m\)</span> and <span class="math notranslate nohighlight">\(1400\,m\)</span>)</p></li>
+</ol>
+<p><em>Note: use np.tan() and np.cos() in the Jupyter notebook where necessary and again use radians - more on this later!</em></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to PHYS11006 Computing Skills</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Wk1_Measurements_Errors_and_Uncertainty.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Measurements, Errors and Uncertainty</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computers-as-calculators">Computers as Calculators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#google-sheets">Google Sheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-python-interpreter">The Python Interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">Jupyter Notebooks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Google Sheets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-interpreter">Python Interpreter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebook</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Ross Mathieson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

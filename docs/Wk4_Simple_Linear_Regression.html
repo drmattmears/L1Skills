@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Linear Regression &#8212; PHYS11006 - Computing Skills Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Wk4_Simple_Linear_Regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Solving Coding Problems" href="Wk5_Solving_Coding_Problems.html" />
+    <link rel="prev" title="Visualising Data and Linear Regression" href="Wk3_Visualising_Data_and_Linear_Regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to PHYS11006 Computing Skills
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Performing_Calculations_with_Computers_I.html">Performing Calculations with Computers I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Measurements_Errors_and_Uncertainty.html">Measurements, Errors and Uncertainty</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Performing_Calculations_with_Computers_II.html">Performing Calculations with Computers II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Functions_and_Modules.html">Functions and Modules</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Conditional_Statements_and_Loops.html">Conditional Statements and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Visualising_Data_and_Linear_Regression.html">Visualising Data and Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Solving_Coding_Problems.html">Solving Coding Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Artificial_Intelligence.html">Artificial Intelligence (AI)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk6_Computing_Skills_Assessment.html">Computing Skills Assessment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FWk4_Simple_Linear_Regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Wk4_Simple_Linear_Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Simple Linear Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression-using-python">Simple Linear Regression using Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression-using-originpro">Simple Linear Regression using OriginPro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-session">Free Session</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="simple-linear-regression">
+<h1>Simple Linear Regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<div class="section" id="learning-objectives">
+<h2>Learning Objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>To be able to perform a simple linear regression using appropriate computational tools.</p></li>
+<li><p>To be able to extract fitting parameters from scipy.stats.linregress.</p></li>
+<li><p>To be able to use OriginPro for statistical analysis including linear regression.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>This week you will be introduced to computational tools that allow us to perform our regression analysis without the need of cumbersome manual calculation. We will use Python and OriginPro. OriginPro is a piece of software that allows us to perform complete statistical analysis on a given data set. It is an incredibly powerful tool capable of performing all of the same statistical calculations as Python, but with the added advantage of providing an incredibly user-friendly experience.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="simple-linear-regression-using-python">
+<h2>Simple Linear Regression using Python<a class="headerlink" href="#simple-linear-regression-using-python" title="Permalink to this heading">#</a></h2>
+<p>The simplest linear regression is…. a simple linear regression. This is what we did last week and is the term used to describe a linear regression where we either assume that there are no errors associated with our data points, or that the weighting of the errors is the same for each data point (homoscedasticity).</p>
+<p>To quickly perform the same calculations we did last week in our manual regression, we can use the linregress function from the scipy.stats package in Python. The linregress function will not only return the intercept and gradient of the line of best fit for a given data set, but will also return the standard errors associated with the intercept and gradient and the Pearson’s correlation coefficient.</p>
+<p>The Pearson correlation coefficient, r, can take on any value between -1 and 1, and is a measure of the strength of the correlation between two variables. If the correlation coefficient is equal to -1, this is indicative of a strong negative correlation, whereas a correlation coefficient equal to 1 is indicative of a strong positive correlation. If there is no correlation the value will be equal to 0. A value between 0 and -1 or 0 and 1 indicates that there is a correlation, the strength of which is indicated by the magnitude of the value.</p>
+<p>You can calculate the Pearson correlation coefficient yourself using the following formula:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-77406655-9307-4e42-a71f-06afaa14382f">
+<span class="eqno">(7)<a class="headerlink" href="#equation-77406655-9307-4e42-a71f-06afaa14382f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+r = \frac{\sum{(x_i - \bar{x})(y_i - \bar{y})}}{\sum{(x_i - \bar{x})^2} \cdot \sum{(y_i - \bar{y})^2}}
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i\)</span> is a given value of <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the mean value of <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y_i\)</span> is a given value of <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(\bar{y}\)</span> is the mean value of <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p><img alt="image" src="_images/Correlation_Coefficient.png" /></p>
+<p>The plot above shows 4 different data sets. The upper-left data set has a correlation coefficient of 0.9997 and the lower-left data set has a correlation coefficient of -0.9996. This is expected as they clearly show strong positive and negative correlations, respectively. The upper-right data set has a correlation coefficient of 0.9375, which indicates that there is a positive correlation, but one that is not as strong as that shown in the upper-left plot. Finally, the lower-right plot has a correlation coefficient of -0.0554, which is indicative of a very weak negative correlation.</p>
+<p>If we square the Pearson correlation coefficient, we obtain the Coefficient of Determination, R2, often called the R-squared value. R2 may take on a value between 0 and 1 and is a measure of how well the model used to describe a data set is at predicting an outcome. An R2 value equal to 1 means that the model is able to perfectly predict any given value of y from any given value of x, whereas an R2 value equal to 0 means that the model cannot predict an outcome. Naturally, a value closer to 1 is better.</p>
+<p>Now that we understand what the correlation coefficient tells us, let’s do some fitting!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># First, let&#39;s define some random x,y data. </span>
+<span class="n">xData</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">yData</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Next, we import linregress</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+
+<span class="c1"># Now we can fit the data. </span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">yData</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lets print our results:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The gradient of the line of best fit is: &quot;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">results</span><span class="o">.</span><span class="n">slope</span><span class="p">,</span> <span class="s2">&quot; +\- &quot;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">results</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="c1"># slope = gradient, stderr = standard error of gradient</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The intercept of the line of best fit is: &quot;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">results</span><span class="o">.</span><span class="n">intercept</span><span class="p">,</span> <span class="s2">&quot; +\- &quot;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">results</span><span class="o">.</span><span class="n">intercept_stderr</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="c1"># intercept = intercept, intercept_stderr = standard error of intercept</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Pearsons correlation coefficient is: &quot;</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">rvalue</span><span class="p">)</span> <span class="c1"># rvalue = Pearson correlation coefficient.</span>
+
+<span class="c1"># The &#39;%.3f&#39; % term above is simply used to tell the computer that we only want the results printed </span>
+<span class="c1"># to the first three decimal places (for improved readability)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The gradient of the line of best fit is:  2.959  +\-  0.066 
+
+The intercept of the line of best fit is:  17.136  +\-  3.919 
+
+The Pearsons correlation coefficient is:  0.9977520628684304
+</pre></div>
+</div>
+</div>
+</div>
+<p>It only takes one line of code to fit a simple linear regression to our data! Once the gradient and intercept of the line of best fit have been determined, we can plot our line of best fit using <span class="math notranslate nohighlight">\(y= mx +c\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Plot the line of best fit using our xData and calculated gradient and intercept:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">results</span><span class="o">.</span><span class="n">slope</span> <span class="o">*</span> <span class="n">xData</span> <span class="o">+</span> <span class="n">results</span><span class="o">.</span><span class="n">intercept</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 1 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="simple-linear-regression-using-originpro">
+<h2>Simple Linear Regression using OriginPro<a class="headerlink" href="#simple-linear-regression-using-originpro" title="Permalink to this heading">#</a></h2>
+<p>Before we learn how to perform a linear regression using OriginPro, I should note that this software requires a licence to use. The university does have a limited number of licences to use, however it is recommended that you should access OriginPro on a suitable university computer (e.g. the lab PC’s).</p>
+<p>A second point to note is that OriginPro cannot natively be run on MacOS and instead requires the user to setup and use a “virtual machine” or partition their hard-drive and install windows onto their mac. I do not recommend you use either of these options. This simply highlights why so many scientists use Python - it is open source and universal.</p>
+<ol class="arabic">
+<li><p>To begin using OriginPro on a university computer, search for OriginPro in the Windows search bar and open OriginPro 2019 (64 Bit). You will be greeted with a range of options of the workbook you wish to use - select “Blank Workbook”:</p>
+<p><img alt="image" src="_images/OriginPro1.png" /></p>
+</li>
+<li><p>Once you have opened the blank workbook, you should see the following:</p></li>
+</ol>
+<p><img alt="image" src="_images/OriginPro2.png" /></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The rows and columns of cells are where we will enter our x and y data. If we had multiple values of y for any given value of x, we could add additional columns to the book. You should enter the names and units of the x/y variables in the appropriate cells.
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>Next, we will fill the cells with our x and y values. We could do this manually, however it is often more convenient to simply import the data from an appropriate file type e.g. a csv file.</p>
+<p>To import data, from the toolbar select “Data” &gt;&gt; “Import from file” &gt;&gt; “CSV”, and then browse your local computer to find the appropriate CSV file. OriginPro will then read the CSV file and fill the empty cells.</p>
+</li>
+</ol>
+<p><img alt="image" src="_images/OriginPro3.png" /></p>
+<ol class="arabic" start="4">
+<li><p>Once our data has been imported, we can perform analysis using it. To perform a simple linear regression simply highlight the data in book 1 and in the toolbar select “Analysis” &gt;&gt; “Fitting” &gt;&gt; “Linear Fit”.</p>
+<p>The default options provided as you navigate the fitting options should be appropriate, however you are free to edit the default selection if needed.</p>
+</li>
+</ol>
+<p><img alt="image" src="_images/OriginPro4.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>Finally, we can perform our fit and see our results. All of the fitting results are provided in the “Parameters” and “Statistics” tables. You can better visualise and edit the plot produced by clicking on the plot preview.</p></li>
+</ol>
+<p><img alt="image" src="_images/OriginPro5.png" /></p>
+<ol class="arabic simple" start="6">
+<li><p>The information from OriginPro may then be used to produce a high quality plot. For the exercises below, I would suggest that you play around with the style options in OriginPro, but use the information it outputs to make a high quality plot using Python.</p></li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="activities">
+<h2>Activities<a class="headerlink" href="#activities" title="Permalink to this heading">#</a></h2>
+<p><strong>Linear Regression using Computational Tools</strong></p>
+<p>For this activity you are tasked with performing simple linear regressions using computational methods for the four data sets provided. Please do the following:</p>
+<ol class="arabic simple">
+<li><p>Fit Data1 and Data2 using the linregress function in Python.</p></li>
+<li><p>Fit Data3 and Data4 using OriginPro. You can download these data sets to your local computer from CoCalc.</p></li>
+<li><p>Extract your fit parameters from both methods and produce a series of high quality plots using Python. You may wish to create your plots such that they are contained within a single figure using subplots.</p></li>
+<li><p>Comment on the fits and their quality: consider the errors associated with each extracted parameter, the Pearson correlation coefficient and the coefficient of determination.</p></li>
+</ol>
+<p>Ensure that the fit parameters and associated statistics from each fit are noted (e.g. printed as a string) so that they may be checked.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Task 1: Linear Regression using Python</span>
+
+<span class="c1"># Import the csv data</span>
+
+<span class="c1"># Perform linear regression on &quot;Data1&quot; and &quot;Data2&quot;</span>
+
+<span class="c1"># Extract fitting parameters.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Task 2: Linear Regression using OriginPro</span>
+
+<span class="c1"># Save the fit parameters determined in OriginPro as variables here.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Task 3: Produce high quality plots.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="free-session">
+<h2>Free Session<a class="headerlink" href="#free-session" title="Permalink to this heading">#</a></h2>
+<p>You may use the reminder of this session as you see fit. I recommend that you take this time to review the content we have covered so far, complete any outstanding tasks from previous weeks and seek support from either the academic staff or GTA’s on any topics you do not yet feel comfortable with.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Wk3_Visualising_Data_and_Linear_Regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Visualising Data and Linear Regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Wk5_Solving_Coding_Problems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Solving Coding Problems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression-using-python">Simple Linear Regression using Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression-using-originpro">Simple Linear Regression using OriginPro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-session">Free Session</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Ross Mathieson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

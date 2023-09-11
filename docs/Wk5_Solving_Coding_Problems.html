@@ -1,0 +1,790 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solving Coding Problems &#8212; PHYS11006 - Computing Skills Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Wk5_Solving_Coding_Problems';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Artificial Intelligence (AI)" href="Wk5_Artificial_Intelligence.html" />
+    <link rel="prev" title="Simple Linear Regression" href="Wk4_Simple_Linear_Regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to PHYS11006 Computing Skills
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Performing_Calculations_with_Computers_I.html">Performing Calculations with Computers I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Measurements_Errors_and_Uncertainty.html">Measurements, Errors and Uncertainty</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Performing_Calculations_with_Computers_II.html">Performing Calculations with Computers II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Functions_and_Modules.html">Functions and Modules</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Conditional_Statements_and_Loops.html">Conditional Statements and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Visualising_Data_and_Linear_Regression.html">Visualising Data and Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk4_Simple_Linear_Regression.html">Simple Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Solving Coding Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Artificial_Intelligence.html">Artificial Intelligence (AI)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk6_Computing_Skills_Assessment.html">Computing Skills Assessment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FWk5_Solving_Coding_Problems.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Wk5_Solving_Coding_Problems.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Solving Coding Problems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sanity-checking">Sanity Checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-is-your-friend">Google is your friend</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-documentation">Python Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asking-for-help">Asking for help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-energy-and-velocity-relationship">Kinetic Energy and Velocity Relationship</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superposition-of-standing-waves">Superposition of Standing Waves</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="solving-coding-problems">
+<h1>Solving Coding Problems<a class="headerlink" href="#solving-coding-problems" title="Permalink to this heading">#</a></h1>
+<hr class="docutils" />
+<div class="section" id="learning-objectives">
+<h2>Learning Objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>To be aware of tools and techniques that can be used to debug code.</p></li>
+<li><p>To understand how we may solve error messages using appropriate tools.</p></li>
+<li><p>To have an awareness of StackOverflow, Python documentation and ChatGPT.</p></li>
+<li><p>Be able to use AI to solve programming problems.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>As you will likely have noticed by now, when we are coding we are prone to making mistakes or misunderstand how to use some tool which means that when we execute our code we are greeted with error messages. This week you will be introduced to the tools and information repositories that we can use to debug our code and get rid of those pesky error messages.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="sanity-checking">
+<h2>Sanity Checking<a class="headerlink" href="#sanity-checking" title="Permalink to this heading">#</a></h2>
+<p>As you will likely have noticed by now, when we are coding we are prone to making mistakes or misunderstand how to use some tool which means that when we execute our code we are greeted with error messages. This week you will be introduced to the tools and information repositories that we can use to debug our code and get rid of those pesky error messages.</p>
+<hr class="docutils" />
+<p>## Sanity Checking</p>
+<p>The first thing we can do when we are greeted with an error message is to sanity check our work. Take a look at the bottom of the error message and take a look at which line in the script it is referencing, take a look at that line and double check that it looks how you expect it to. Some common things to look out for are:</p>
+<ol class="arabic simple">
+<li><p>Is everything spelt correctly?</p></li>
+<li><p>Are all the brackets closed?</p></li>
+<li><p>Have we used capital letters where there should be none or vice versa (e.g. variable names).</p></li>
+<li><p>Is everything that needs to be defined actually defined?</p></li>
+</ol>
+<p>Sometimes, the line of code reference in the error message will be completely fine, but the line above it may need completing instead. For example, if we run the code in the cell below we will be greeted with an error message telling us which line of the code is responsible for our error:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_message</span><span class="p">()</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello World!&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="n">print_message</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-1-e2985e6c9984&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">print_message</span><span class="p">()</span>
+                       <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before you execute this snippet of code consider why it is flawed - does the error message agree with your diagnosis?</p>
+<p>If everything in your code is looking fine, you may want to do an exercise commonly referred to as “rubber-ducking”. This is something that you may do by yourself or with a friend (who may or may not be an inanimate object… for example… a rubber duck.), but the idea is simple, explain step-by-step or line-by-line what your code is doing using natural language. More often than not, you will quickly identify what is causing the error in your code - annoyingly this will typically be a small and simple mistake that you otherwise would have overlooked. RubberDuckDebugging.com summarises the method quite nicely:</p>
+<p>“The rubber duck debugging method is as follows:</p>
+<blockquote>
+<div><p>Beg, borrow, steal, buy, fabricate or otherwise obtain a rubber duck (bathtub variety).</p>
+</div></blockquote>
+<blockquote>
+<div><p>Place rubber duck on desk and inform it you are just going to go over some code with it, if that’s all right.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Explain to the duck what your code is supposed to do, and then go into detail and explain your code line by line.</p>
+</div></blockquote>
+<blockquote>
+<div><p>At some point you will tell the duck what you are doing next and then realise that that is not in fact what you are actually doing. The duck will sit there serenely, happy in the knowledge that it has helped you on your way.</p>
+</div></blockquote>
+<p>Note: In a pinch a coworker might be able to substitute for the duck, however, it is often preferred to confide mistakes to the duck instead of your coworker.”</p>
+<p>Feel free to <a class="reference external" href="https://rubberduckdebugging.com/cyberduck/">talk to a rubber duck online</a> when solving your problems.</p>
+<p><img alt="image" src="_images/RubberDucking.jpeg" /></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="google-is-your-friend">
+<h2>Google is your friend<a class="headerlink" href="#google-is-your-friend" title="Permalink to this heading">#</a></h2>
+<p>It may appear obvious that we can use google to solve coding related queries, but here is some sensible advice nonetheless:</p>
+<ol class="arabic simple">
+<li><p>Avoid typing out long questions related to a given problem - try to be specific and use commonly used phrases or words that you have come across during your time coding.</p></li>
+<li><p>Copy your error into google - not the entire error, just the bit that is relevant to the line of code that is not working. Remove any specific code from your script that the error message quotes if required.</p></li>
+<li><p>Look at more than one search result - more often than not the problem you are facing will have been faced by somebody else before and some variation of the problem you are trying to solve will be hiding on a forum somewhere. Take time looking through different search results and try to identify which problem is most similar to yours (or to find a solution that you understand) and adapt your code accordingly.</p></li>
+<li><p>Modify your search - sometimes just rephrasing your search will help you find a suitable solution.</p></li>
+</ol>
+<hr class="docutils" />
+<p>## Stack Overflow and W3 Schools</p>
+<p>Inevitably when searching for a solution to a problem you will encounter <a class="reference external" href="https://stackoverflow.com/">StackOverflow</a> or specific Python documentation (like the ones linked in previous weeks briefs).</p>
+<p>StackOverflow is a forum where people are able to ask questions, submit their codes and receive feedback. When using StackOverflow it is important to make sure that you read through the original post and the proposed solutions to determine how applicable they are to  solving your problem. It may be the case that you can simply take the code provided to solve a simple problem, or you may need to study the code line-by-line to understand what the provided code is doing and how it may be modified for your use. If you take a sample of code from an online forum <strong>it is imperative that you understand what it is doing!</strong></p>
+<p>Although it is unlikely that you will need to post to StackOverflow yourself, please do review the “Asking for Help” section below, which gives advice on how to effectively ask for help when coding. Asking for help appropriately is a skill in itself so it is worth spending some time reviewing these materials.</p>
+<p>Another excellent resource for learning Python is <a class="reference external" href="https://www.w3schools.com/python/">W3Schools</a>. This website teaches you how to write Python code, explains what different tools/packages do, and shows you how to use them with examples and snippets of executable code. If you know where your code is breaking (e.g. it’s something to do with plt.plot), but do not know how to fix it, this is an excellent website to refer to.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="python-documentation">
+<h2>Python Documentation<a class="headerlink" href="#python-documentation" title="Permalink to this heading">#</a></h2>
+<p>Many times the error we encounter will be related to the arguments required for an imported function or package - to debug these errors we may need to consult appropriate documentation.</p>
+<p>When you first encounter this type of material it can appear somewhat inaccessible and intimidating, but let’s inspect the typical anatomy of Python documentation so that we may feel more comfortable using it to solve our coding problems. Let’s take a look at the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html">scipy.stats.linregress documentation</a>:</p>
+<p><img alt="image" src="_images/Documentation1.png" /></p>
+<p>At the very top of the page we can see the package that the linregress function comes from - scipy.stats.</p>
+<p>Following this we see an example of how one would type the function into their code and the arguments that they would need to include, for example, we are told that the x and y parameters are required and that these each need to be array_like (i.e. we need a list of x and y data points). You may note that the documentation outlines that we may set “y=None” if our x array is 2 dimensional.</p>
+<p>In this example there is the “alternative” argument, which by default is set as “two-sided” but can be changed to “less” or “greater” if we want to ensure that the gradient of the line is less than or greater than zero, respectfully.</p>
+<p>This is all of the information we need for us to be able to use the linregress function.</p>
+<p><img alt="image" src="_images/Documentation2.png" /></p>
+<p>Following the parameters are the returns (see above) - these being all of the parameters that we can extract from the linregress function once it has successfully fit out data. From the documentation we can see that our “result” is an object with several attributes: the slope, intercept, rvalue, pvalue, stderr, and inctercept_stderr, and that each of these values are float types. Each attribute is accompanied by a description of what it is for user ease.</p>
+<p>As an added bonus, the documentation also references similar functions that may be of use to us - this can be particularly useful when we are trying to do something specific, but do not know if a function exists/the name of a function needed.</p>
+<p>Next, the documentation outlines any specific notes to be aware of - in this case the different ways in which we can extract our fit information, note only one method allows us to determine the intercept standard error…</p>
+<p><img alt="image" src="_images/Documentation3.png" /></p>
+<p>Finally, and perhaps most usefully, at the end of the documentation we are typically given examples of how to use the code that we are reading about. This may be accompanied by  an example output of the code.</p>
+<p><img alt="image" src="_images/Documentation4.png" />
+<img alt="image" src="_images/Documentation5.png" /></p>
+<p>… and that’s all there is to it!</p>
+<p>Documentation simply tells us what goes in and what comes out and to clarify anything we may be unsure of. If further information is required that the documentation does not outline, appropriate links will usually be provided for us to follow.</p>
+<p>It may take a few reads to understand documentation, but this is usually worth our time nonetheless.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="asking-for-help">
+<h2>Asking for help<a class="headerlink" href="#asking-for-help" title="Permalink to this heading">#</a></h2>
+<p>Most of the coding errors that you will encounter in this course will be solvable using the tools above, however sometimes when we are well and truly stuck we will need to ask for help. Asking for help is a skill that extends beyond the scope of programming and these lessons may be useful in other situations and aspects of our lives.</p>
+<p>The challenge here is making sure that we are able to clearly communicate what our problem is and the context surrounding it - if we can master this skill we will be in a better position to solve our problems as the ‘expert’ will be able to understand the problem at hand and be able to offer suitable advice. If we are unable to do this, we may receive inappropriate advice that leaves us needing to ask follow up questions, which may annoy the expert and discourage them from helping us further.</p>
+<p>In order to effectively solve problems by asking questions, I refer you to the <a class="reference external" href="https://www.theodinproject.com/lessons/foundations-asking-for-help">“Asking For Help” module</a> from the Odin Project - here you will find information on how to ask questions in the most effective way so that people are able to help you solve them. Linked below are the articles that form the assignment tab (I strongly recommend that you give them a read):</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://medium.com/&#64;gordon_zhu/how-to-be-great-at-asking-questions-e37be04d0603">How to be great at asking coding questions</a></p></li>
+<li><p><a class="reference external" href="https://xyproblem.info/">The XY problem</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/help/how-to-ask">How do I ask a good coding question?</a></p></li>
+<li><p><a class="reference external" href="https://slash7.com/2006/12/22/vampires/">How to avoid becoming a help-vampire</a></p></li>
+</ol>
+<p>We should ask for help sparingly and only after we have tried to solve our problem through other means. Asking for help to solve common or simple problems is also a good way to alienate the people whose advice we seek - showing initiative and persistence is a good way to get them on side!</p>
+<p><em>The Odin Project is a free online course complete with a learning community where you can learn all of the skills required to become a web developer from scratch. The course culminates with you building a series of portfolio projects and learning how to be successful at applications/interviews for web development jobs. I highly recommend this resource if these are skills you wish to learn or if you are interested in a career in web development.</em></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="activities">
+<h2>Activities<a class="headerlink" href="#activities" title="Permalink to this heading">#</a></h2>
+<div class="section" id="kinetic-energy-and-velocity-relationship">
+<h3>Kinetic Energy and Velocity Relationship<a class="headerlink" href="#kinetic-energy-and-velocity-relationship" title="Permalink to this heading">#</a></h3>
+<p>The following section of code is a function designed to calculate and plot the kinetic energy and velocity of an object moving at constant acceleration starting from some initial velocity.</p>
+<p>The function takes the following arguments:</p>
+<ul class="simple">
+<li><p>The mass of the object</p></li>
+<li><p>The object’s acceleration</p></li>
+<li><p>The initial velocity of the object</p></li>
+<li><p>A time interval (the time that elapses between calculations)</p></li>
+<li><p>The total time period for which calculations will be performed across.</p></li>
+</ul>
+<p>Take some time to read through the code and work out what it is doing. Make sure you understand how the function works, how the ‘for’ statement in the function works, and review the quirks of the plotting section.</p>
+<p>To avoid using the same y-axis for two different scales the plot produced has two y-axis, one for the kinetic energy and one for the velocity (made as two plots sharing the same x-axis). Making the plot this way means that plt.legend() only shows one of the data labels. For this reason a few minor ammendments have been made to the plotting code - don’t worry too much about this, I only mention it in case it looks a little unfamiliar and you are unsure why.</p>
+<p><em>Task</em></p>
+<ol class="arabic simple">
+<li><p>Copy this code and save it into a Jupyter Notebook.</p></li>
+<li><p>Run the code and read through the error messages output. These will tell you where the error is occuring (View &gt;&gt; Toggle Line Numbers will make it easier to spot where these are).</p></li>
+<li><p>Look through the code and try to fix any minor mistakes.</p></li>
+</ol>
+<p>The mistakes in this section of code should be fixable simply by sanity checking the code (error messages will guide you).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Broken Code</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">ply</span>
+
+<span class="n">mass</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">acceleration</span> <span class="o">=</span> <span class="mf">9.8</span>
+<span class="n">initial_velocity</span> <span class="mi">0</span>
+<span class="n">time_interval</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">total_time</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="k">def</span> <span class="nf">kinetic_energy</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">acceleration</span><span class="p">,</span> <span class="n">initial_velocity</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">total_time</span><span class="p">)</span>
+    <span class="n">velocity</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">kinetic_energy</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">total_time</span> <span class="o">/</span> <span class="n">time_interval</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        
+        <span class="n">time_value</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">time_interval</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span>
+        
+        <span class="n">velocity_value</span> <span class="o">=</span> <span class="n">initial_velocity</span> <span class="o">+</span> <span class="n">acceleration</span> <span class="o">*</span> <span class="n">time_value</span>
+        <span class="n">velocity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">velocity_value</span><span class="p">)</span>
+        
+        <span class="n">kinetic_energy_value</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">mass</span> <span class="o">*</span> <span class="n">velocity_value</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">kinetic_energy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kinetic_energy_value</span><span class="p">)</span>
+        
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+    
+    <span class="n">plot1</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Velocity&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Velocity [m/s]&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+    
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">plot2</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">kinetic_energy</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Kinetic Energy&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Kinetic Energy [J]&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;cornflowerblue&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># As we have two y-axis, we need to add this section so that our legend is formatted appropraitely</span>
+    <span class="n">plots</span> <span class="o">=</span> <span class="n">plot1</span> <span class="o">+</span> <span class="n">plot2</span>
+    <span class="n">labs</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">plots</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">plots</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+<span class="n">kinetic_energy</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span> <span class="n">Acceleration</span><span class="p">,</span> <span class="n">initial_velocity</span><span class="p">,</span> <span class="n">time_interval</span><span class="p">,</span> <span class="n">total_time</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-2-48b82f5cfc2d&gt;&quot;</span><span class="gt">, line </span><span class="mi">7</span>
+    <span class="n">initial_velocity</span> <span class="mi">0</span>
+                     <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="superposition-of-standing-waves">
+<h3>Superposition of Standing Waves<a class="headerlink" href="#superposition-of-standing-waves" title="Permalink to this heading">#</a></h3>
+<p>In this exercise, I would like you to become familiar using online sources of information for yourself. To do this you will write a piece of code that help visualise the principle of superposition of waves.</p>
+<p>A function is defined that outputs the amplitude of a standing wave of known wavelength for a given value of displacement along in the x-direction. Your task is to write the rest of the code required to produce the following plot:</p>
+<p><img alt="image" src="_images/Superposition.png" /></p>
+<p><strong>Task</strong></p>
+<p>Using the function defined, recreate the plot shown in the figure above (wave 1: wavelength = 5 m &amp; amplitude = 5, wave 2: wavelength = 1 m, amplitude = 2.5). Note that this plot has some features that we have not covered in the course notes and you will need to find information online to recreate it.</p>
+<p>The key things you will need to figure out how to do are:</p>
+<ul class="simple">
+<li><p>Use the function to generate the two waves and their superposition (1000 points for x between 0 and 2<span class="math notranslate nohighlight">\(\pi\)</span> for each wave).</p></li>
+<li><p>Add additional ticks on the y-axis.</p></li>
+<li><p>Fix the position of the legend on the plot.</p></li>
+<li><p>Make the labels in the legend be arranged horizontally rather than vertically.</p></li>
+<li><p>Add the horizontal black line at y = 0.</p></li>
+<li><p>Fill the white space beneath each of the waves with appropriate colours and set their transparencies to 20%.</p></li>
+</ul>
+<p>Use Python documentation, Google, stackoverflow, w3-schools etc. as sources of information when reproducing the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Incomplete code</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">standing_wave</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">):</span>
+    <span class="n">wavenumber</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">wavelength</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">amplitude</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">wavenumber</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Input values for the first standing wave</span>
+
+<span class="c1"># Input values for the second standing wave</span>
+
+<span class="c1"># Define the x values for the plot</span>
+
+<span class="c1"># Calculate the individual standing waves and their superposition</span>
+
+<span class="c1"># Plot the standing waves and their superposition as outlined in the brief</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Wk4_Simple_Linear_Regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Simple Linear Regression</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Wk5_Artificial_Intelligence.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Artificial Intelligence (AI)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sanity-checking">Sanity Checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-is-your-friend">Google is your friend</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-documentation">Python Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#asking-for-help">Asking for help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-energy-and-velocity-relationship">Kinetic Energy and Velocity Relationship</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#superposition-of-standing-waves">Superposition of Standing Waves</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Ross Mathieson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

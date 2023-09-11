@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions and Modules &#8212; PHYS11006 - Computing Skills Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Wk2_Functions_and_Modules';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Conditional Statements and Loops" href="Wk3_Conditional_Statements_and_Loops.html" />
+    <link rel="prev" title="Performing Calculations with Computers II" href="Wk2_Performing_Calculations_with_Computers_II.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to PHYS11006 Computing Skills
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Performing_Calculations_with_Computers_I.html">Performing Calculations with Computers I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Measurements_Errors_and_Uncertainty.html">Measurements, Errors and Uncertainty</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Performing_Calculations_with_Computers_II.html">Performing Calculations with Computers II</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Functions and Modules</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Conditional_Statements_and_Loops.html">Conditional Statements and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Visualising_Data_and_Linear_Regression.html">Visualising Data and Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk4_Simple_Linear_Regression.html">Simple Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Solving_Coding_Problems.html">Solving Coding Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Artificial_Intelligence.html">Artificial Intelligence (AI)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk6_Computing_Skills_Assessment.html">Computing Skills Assessment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FWk2_Functions_and_Modules.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Wk2_Functions_and_Modules.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Functions and Modules</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-conventions">Naming Conventions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Modules</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="functions-and-modules">
+<h1>Functions and Modules<a class="headerlink" href="#functions-and-modules" title="Permalink to this heading">#</a></h1>
+<p>As we established last week, one of the main reasons that we use programming languages is to make our workflow more efficient. We use functions and modules to do just this - they are used to save us time by eliminating the need to write the same bits of code over and over again.</p>
+<div class="section" id="naming-conventions">
+<h2>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this heading">#</a></h2>
+<p>Now that we are comfortable defining variables, we should briefly consider variable names. From the assigned variable name it should be clear what the variable represents, for example, if I set a variable equal to the age of my car, a good name could be “carAge”, whereas a less useful name might be “ca”.</p>
+<p>In the example above I used camel case for my variable name and this is a good style convention to adopt. When using camel case the first word of the variable is lowercase, and rather than using spaces, we highlight the start of a new word using a capital letter e.g. thisIsAnExampleOfHowWeCanUseCamalCase. Alternatively, we may wish to use snake case: this_is_where_we_use_underscores. Typically when using snake case all letters are lowercase.</p>
+<p>Be aware that Python is case sensitive - “variable1” is not the same as “Variable1”. Variable names must always start with a letter.</p>
+<p>In this document, I will use snake case when defining the names of functions.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<p>A function is a block of code which can be called from anywhere in your program. Function use is particularly powerful as It allows you to reuse code (saving you time and reducing the chances of errors) and they make code cleaner and easier to adapt and debug.</p>
+<p>We have actually used functions lots of times previously, the print() command is a function, all the methods we have used are actually functions. What we are going to do now is build our own functions.</p>
+<p>To start with we are going to look at the anatomy of a function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Here is an example of a simple function to calculate the length of the hypotenuse of a triangle.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">hypotenuse_calculator</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+	<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at the different elements of the function above:</p>
+<ol class="arabic simple">
+<li><p>We begin our function with the “def” command. This tells the computer that we are about to define a new function.</p></li>
+<li><p>Next we see the name of our function “HypotenuseCalculator” - this is what we will call in our script when we want to use it</p></li>
+<li><p>Following our functionname we have “(a,b)” which defines the arguments that we can input into our function. We end our first line with a “:”. Note: a function does not need arguments, but often they are useful.</p></li>
+<li><p>“c = np.sqrt(a<strong>2 + b</strong>2)” is the bit of code that defines what our function does. Note that this is indented.</p></li>
+<li><p>Finally we have our “return c” statement. This ends the function and gives us the variable(s) that we would like to extract from the function. Note: a function does not always return information.</p></li>
+</ol>
+<p>If we wanted to call our function in our script, we can now just type the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We are saved from having to type out the calculation each time we want </span>
+<span class="c1"># to determine the hypotenuse of a triangle with different dimensions!</span>
+
+<span class="n">h1</span> <span class="o">=</span> <span class="n">hypotenuse_calculator</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h1</span><span class="p">)</span>
+
+<span class="n">h2</span> <span class="o">=</span> <span class="n">hypotenuse_calculator</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span>
+
+<span class="n">h3</span> <span class="o">=</span> <span class="n">hypotenuse_calculator</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mf">73.2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.8284271247461903
+5.385164807134504
+74.02188865464053
+</pre></div>
+</div>
+</div>
+</div>
+<p>The example provided above is a very simple function that returns a single value, but there is nothing to stop us writing a more complex function that returns many variables. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">right_angled_triangle</span><span class="p">(</span><span class="n">base</span><span class="p">,</span><span class="n">height</span><span class="p">):</span>
+   
+    <span class="n">hypotenuse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">base</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">height</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The hypotenuse has a length of &quot;</span><span class="p">,</span> <span class="n">hypotenuse</span><span class="p">,</span> <span class="s2">&quot;units. </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">area</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The area of the triangle is &quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="s2">&quot;units**2. </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> 
+    
+    <span class="n">perimeter</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">height</span> <span class="o">+</span> <span class="n">hypotenuse</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The perimeter of the triangle is &quot;</span><span class="p">,</span> <span class="n">perimeter</span><span class="p">,</span> <span class="s2">&quot;units. </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="n">hypotenuse</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Theta is&quot;</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="s2">&quot;radians. </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">ratio</span> <span class="o">=</span> <span class="n">area</span> <span class="o">/</span> <span class="n">perimeter</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The surface area to perimeter ratio of the triangle is: &quot;</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">hypotenuse</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">perimeter</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">ratio</span>
+
+<span class="c1"># &quot;\n&quot; just tells the computer to start a new line (makes it easier to read output)</span>
+
+<span class="n">hypotenuse</span><span class="p">,</span><span class="n">area</span><span class="p">,</span> <span class="n">perimeter</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">ratio</span> <span class="o">=</span> <span class="n">right_angled_triangle</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The hypotenuse has a length of  17.4928556845359 units. 
+
+The area of the triangle is  67.5 units**2. 
+
+The perimeter of the triangle is  41.4928556845359 units. 
+
+Theta is 1.0303768265243125 radians. 
+
+The surface area to perimeter ratio of the triangle is:  1.6267860788660249 .
+</pre></div>
+</div>
+</div>
+</div>
+<p>As mentioned above, we don’t necessarily need arguments for our function to be useful:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">say_hello_world</span><span class="p">():</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+
+<span class="n">say_hello_world</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">#</a></h2>
+<p>A module is simply a file containing a set of functions that you may call into your script. The advantage of using a module is that, similarly to how using a function means that we do not have to rewrite the same formulae over and over again in our script, we no longer need to keep defining the functions that we use commonly in each script we write - we can simply import them from a premade module.</p>
+<p>Creating and using a simple module is very easy. The first thing we must do is write a script containing the functions that we may need to call.</p>
+<p>As we are going to create and import the module into this notebook, for simplcity the functions are not defined in here (this would defeat the purpose of the exercise - see area.py for functions that are defined.)</p>
+<p>Now that we have defined all of the functions within our module, we must save it with an appropriate name and within the same directory (folder) as the script that we are going to import the module into.</p>
+<p>The module above will be saved and named “area.py”. It is key that the “.py” is used as the file extension so that the computer knows to read it as a Python file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">area</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now if we want to determine the area of one of the shapes for </span>
+<span class="c1"># which we have an area function, we simply use the module.</span>
+
+<span class="n">areaCircle</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">areaCircle</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">areaSquare</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">areaRectangle</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">areaTriangle</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">triangle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">areaTriangle</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">triangle</span><span class="p">(</span><span class="mf">3.4</span><span class="p">,</span><span class="mf">7.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The area of a circle with a radius of  5 units is:  78.53981633974483 units**2
+The area of a circle with a radius of  6 units is:  113.09733552923255 units**2
+The area of a square with length of  8 units is:  64 units**2
+The area of a rectangle with length of  10 units and a width of  6 units is:  60 units**2
+The area of a triangle with height of  7 units and a base of  5 units is:  17.5 units**2
+The area of a triangle with height of  7.5 units and a base of  3.4 units is:  12.75 units**2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets compare that to the amount of code we would have needed to write in this single script if we had not used the module:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">circle</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The area of a circle with a radius of &quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="s2">&quot;units is: &quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="s2">&quot;units**2&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">area</span>
+
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">length</span><span class="o">**</span><span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The area of a square with length of &quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="s2">&quot;units is: &quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="s2">&quot;units**2&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">area</span>
+
+<span class="k">def</span> <span class="nf">triangle</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The area of a triangle with height of &quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="s2">&quot;units and a base of &quot;</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="s2">&quot;units is: &quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="s2">&quot;units**2&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">area</span>
+
+<span class="k">def</span> <span class="nf">rectangle</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">width</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">length</span> <span class="o">*</span> <span class="n">width</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The area of a rectangle with length of &quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="s2">&quot;units and a width of &quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="s2">&quot;units is: &quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="s2">&quot;units**2&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">area</span>
+
+<span class="n">areaCircle1</span> <span class="o">=</span> <span class="n">circle</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">areaCircle2</span> <span class="o">=</span> <span class="n">circle</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">areaSquare1</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">areaRectangle1</span> <span class="o">=</span> <span class="n">rectangle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">areaTriangle1</span> <span class="o">=</span> <span class="n">triangle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># ...and we would need to add these definitions to every script we calculated an area in...</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The area of a circle with a radius of  5 units is:  78.53981633974483 units**2
+The area of a circle with a radius of  6 units is:  113.09733552923255 units**2
+The area of a square with length of  8 units is:  64 units**2
+The area of a rectangle with length of  10 units and a width of  6 units is:  60 units**2
+The area of a triangle with height of  7 units and a base of  5 units is:  17.5 units**2
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you become more well versed in coding and start to perform the same tasks over and over again, the advantage of writing well defined functions and using them in modules will become clear, particularly as the tasks you wish to complete become more complex.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="activities">
+<h2>Activities<a class="headerlink" href="#activities" title="Permalink to this heading">#</a></h2>
+<p><strong>SUVAT Project</strong></p>
+<p>You will hopefully remember from your mechanics lecture this week that the SUVAT equations are essentially a subset of the kinematic equations and those that may be used when the acceleration of an object in motion is constant.</p>
+<p>The two equations that were derived in the lecture were:</p>
+<div class="math notranslate nohighlight">
+\[ v(t) = a_0t + v_0 \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ x(t) = \frac{a_0 t^2}{2} + v_0 t +x_0 \]</div>
+<p>For simplicity when assigning variable names, we will also re-write these equations in the SUVAT notation you are likely familiar with:</p>
+<div class="math notranslate nohighlight">
+\[ v = at + u \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ s = \frac{1}{2}at^2 + ut \]</div>
+<p>where s = displacement, u = initial velocity, v = final velocity, a = acceleration and t = time. From these two equations, we can derive additional expressions that allow us to calculate two unknown variables provided that we know the values of the other three:</p>
+<div class="math notranslate nohighlight">
+\[ s = \frac{1}{2}(u+v)t \]</div>
+<div class="math notranslate nohighlight">
+\[ v^2 = u^2 + 2as \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ s = vt - \frac{1}{2}at^2 \]</div>
+<div class="section" id="id1">
+<h3>Functions<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Using the information above, write a series of functions that calculate the values of two unknown SUVAT variables when the values of the three other variables are known. Hint: start by considering how many unique combinations of three sub values of SUVAT there are.</p>
+<p>Each function should contain a print statement that outputs the calculated values. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_one</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">calculation</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of a is &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s2">&quot;ms^-2 and the value of t is &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span><span class="n">t</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Modules<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Using the functions that you have defined above, create a SUVAT module that may be called into any script to allow you to quickly solve SUVAT equations. When creating your module you will want to create a “.py” file. To do this in CoCalc go to your directory and select the “new” button within the tool bar, then type the name of your module into the text field and select the Python extension from the drop down menu to the right of the text field.</p>
+<p>Call your module into the Jupyter Notebook named “ModuleTest” and use it to find the unknown values for the following combinations of SUVAT:</p>
+<p><img alt="image" src="_images/SUVAT_Table.png" /></p>
+<p>Congratulations! You have completed your first Python project!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define SUVAT functions...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Wk2_Performing_Calculations_with_Computers_II.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Performing Calculations with Computers II</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Wk3_Conditional_Statements_and_Loops.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conditional Statements and Loops</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naming-conventions">Naming Conventions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Modules</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Ross Mathieson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

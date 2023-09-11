@@ -1,0 +1,1051 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualising Data and Linear Regression &#8212; PHYS11006 - Computing Skills Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Wk3_Visualising_Data_and_Linear_Regression';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Simple Linear Regression" href="Wk4_Simple_Linear_Regression.html" />
+    <link rel="prev" title="Conditional Statements and Loops" href="Wk3_Conditional_Statements_and_Loops.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to PHYS11006 Computing Skills
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Performing_Calculations_with_Computers_I.html">Performing Calculations with Computers I</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Measurements_Errors_and_Uncertainty.html">Measurements, Errors and Uncertainty</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Performing_Calculations_with_Computers_II.html">Performing Calculations with Computers II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Functions_and_Modules.html">Functions and Modules</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Conditional_Statements_and_Loops.html">Conditional Statements and Loops</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Visualising Data and Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk4_Simple_Linear_Regression.html">Simple Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Solving_Coding_Problems.html">Solving Coding Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Artificial_Intelligence.html">Artificial Intelligence (AI)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk6_Computing_Skills_Assessment.html">Computing Skills Assessment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FWk3_Visualising_Data_and_Linear_Regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Wk3_Visualising_Data_and_Linear_Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualising Data and Linear Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-features-of-a-high-quality-plot">The Features of a High Quality Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-make-high-quality-plots-in-python">How Do We Make High Quality Plots in Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-plots-with-subplots">Making Plots with Subplots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression-suplimentary">Simple Linear Regression (Suplimentary)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-simple-linear-regression">Part 1: Simple Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-what-is-the-linregress-function-actually-doing">Part 2: What is the linregress function actually doing?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-where-did-our-equations-come-from">Part 3: Where did our equations come from?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-functions">Plotting Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-and-plotting-data">Fitting and Plotting Data</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="visualising-data-and-linear-regression">
+<h1>Visualising Data and Linear Regression<a class="headerlink" href="#visualising-data-and-linear-regression" title="Permalink to this heading">#</a></h1>
+<p>As you progress through your degree program you will take part in lots of experiments and collect a vast amount of data. Typically data will initially be recorded in a well designed table and although having an initial record of our measured data is important (as we may need to refer back to it in the future), if I were to ask you to spot patterns in data from a table alone you may find this quite difficult.</p>
+<p>Take a look at the data below and try to quickly spot a pattern.</p>
+<p><img alt="image" src="_images/RandomDataTable.png" /></p>
+<p>Did you manage to spot the trends? Did it take less than a second or so? Probably not.</p>
+<p>Now let’s take a look at this data plotted using Python…</p>
+<p><img alt="image" src="_images/RandomData.png" /></p>
+<p>From the plot above it is immediately obvious that the first set of data follows a linear trend, the second follows a normal distribution, and the third is some sort of power law.</p>
+<p>When writing reports we want to show our data! It may be justifiable to add some of our data tables to an appendix at the end of the report, but generally the best way to present data is graphically.</p>
+<hr class="docutils" />
+<div class="section" id="the-features-of-a-high-quality-plot">
+<h2>The Features of a High Quality Plot<a class="headerlink" href="#the-features-of-a-high-quality-plot" title="Permalink to this heading">#</a></h2>
+<p>It is one thing to make a plot to visualise data, it is another thing to make a high-quality plot to visualise data.</p>
+<p>Imagine that we have performed an experiment to determine the Young’s modulus of a wire. In the experiment we applied a range of tensile forces to a wire and measured the corresponding extension of the wire. Below are two plots that show visualisations of the measured data.</p>
+<p>Consider which of the two plots is the most visually appealing and why? I would hope that you agree that the second plot provides a better visual representation of our data.</p>
+<p>Bad Plot…
+<img alt="image" src="_images/BadPlot.png" /></p>
+<p>Good Plot…
+<img alt="image" src="_images/GoodPlot.png" /></p>
+<p>Features of high quality plot:</p>
+<ol class="arabic simple">
+<li><p>Data is centred and fills the plot.</p></li>
+<li><p>Descriptive axis titles with units are present.</p></li>
+<li><p>Data points are present and not joined up with a trendline.</p></li>
+<li><p>Associated errors are illustrated using error bars.</p></li>
+<li><p>A model fit is superimposed onto the data.</p></li>
+<li><p>A legend is present to differentiate between datasets / lines of best fit.</p></li>
+</ol>
+<p>Optional extras:</p>
+<ol class="arabic simple" start="7">
+<li><p>Grid lines can be useful as a guide for the eyes.</p></li>
+<li><p>A concise but descriptive title may be appropriate, but more often than not a figure caption should be used, which negates the need to include a plot title.</p></li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="how-do-we-make-high-quality-plots-in-python">
+<h2>How Do We Make High Quality Plots in Python?<a class="headerlink" href="#how-do-we-make-high-quality-plots-in-python" title="Permalink to this heading">#</a></h2>
+<p>Now that we have identified what features should be present in a plot, we will introduce the tools we need to make them in Python. We will be using a Python library called Matplotlib.pyplot. Prior to making a plot in Python, we may need to import our data from an external file. To do this we will use the numpy.loadtxt() function to import our data from a .csv file (comma separated value file).</p>
+<p>Firstly, let’s save our data as a .csv file. To do this enter your data into a spreadsheet such as Google Sheets or Microsoft Excel. If you are using Google Sheets, simply export the file as a .csv file, if you are using Excel, use save as to do the same.</p>
+<p><img alt="image" src="_images/GoogleSheetsCSV.gif" />
+<img alt="image" src="_images/MakeCSV.gif" /></p>
+<p>Once you have made your csv file, move it into the same directory as the script you are going to use to plot the data contained within it. Next, we can import the data using the following section of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">force</span><span class="p">,</span> <span class="n">errorForce</span><span class="p">,</span> <span class="n">extension</span><span class="p">,</span> <span class="n">errorExtension</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;Wk3_ForceExtensionData.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">unpack</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">skiprows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>or alternatively…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;Wk3_ForceExtensionData.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">unpack</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">skiprows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">force</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># The first column in the data array</span>
+<span class="n">errorForce</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># The second column in the data array</span>
+<span class="n">extension</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># The third column in the data array</span>
+<span class="n">errorExtension</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># The fourth column in the data array</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that when “unpack = True” there are four variables on the left hand side of the equal sign. This is because we are telling numpy to create an 1D array for each column of our csv file. Alternatively, we can set “unpack = False” which means that we can load the information from our csv file as a single array which we can then slice later. If needed, we could also directly enter our data into the Python script as a numpy array or list.</p>
+<p>The “delimiter = ‘,’” argument simply tells numpy that when it is reading our csv file, the numbers are separated by commas. If we used a different file type (such as .txt) we may want to set that equal to something else.</p>
+<p>We have also included the argument “skiprows = 1”, which tells numpy to ignore the first line of our csv file as this is just the column headings and not the data. We could omit this argument if we did not include the headings in our file.</p>
+<p>Now that we have successfully imported our data we can begin making a fitting script. To do this we are going to use plt.errorbar() (plots x-y data with error bars) and plt.plot() (plots x-y data without error bars). The information required to determine the gradient and intercept of your line of best fit via a manual regression can be found at the end of this document.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the raw data with error bars, and including arguements for the markers, </span>
+<span class="c1"># linestyle, label and color (US spelling - not colour!)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">extension</span><span class="p">,</span> <span class="n">xerr</span> <span class="o">=</span> <span class="n">errorForce</span><span class="p">,</span> <span class="n">yerr</span> <span class="o">=</span> <span class="n">errorExtension</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotting our line of best fit (no markers &amp; no error bars). Note that in this </span>
+<span class="c1"># example the xfit-coordinates and y-fit cordinates have not actually been defined. You will need to do this! </span>
+<span class="c1"># The numbers below are made up so the code works</span>
+<span class="n">xfit</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">45</span><span class="p">]</span>
+<span class="n">yfit</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.55</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setting the axis titles and plot title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Force [N]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Extension [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Wire Extension as a function of Tensile Force Applied&#39;</span><span class="p">)</span>
+
+<span class="c1"># Adding the legend and grid lines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># Saving our figure as a png file so that we may use it later (do not take screenshots to use in reports!)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;Force_Extension_Plot.png&quot;</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Getting Python to show us our plot. This MUST go at the end of our block of code! If not, it will show the plot before the code above has been read.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/dff640266be59e1fce5070210433e7b25ff8b4f70d20b29596723184ea9bf47a.png" src="_images/dff640266be59e1fce5070210433e7b25ff8b4f70d20b29596723184ea9bf47a.png" />
+</div>
+</div>
+<p>That might look like a lot of code, but consider that that is all that is needed to produce a very high quality plot suitable for publication using Python. The graphing tools on spreadsheet software are also capable, but they can often be fiddly if you want to add error bars or change the colours of elements; using Python you can simply type the changes you want to make and run the code again!</p>
+<p>There are lots of customization options available using matplotlib.pyplot. For example, if you wish to change the shape, size, colour, fill etc. of the data points, or the weight, colour or type (solid, dashed, dotted) of the line of best fit, you can easily do this by adding/changing arguments in the code above.</p>
+<p>Do remember that stylistic choices should be appropriate so that it is not difficult to interpret information from the plot! (e.g. tiny neon green data markers on a light purple background, with a yellow line of best fit may be difficult to read…).</p>
+<p>Refer to the documentation below when making stylistic choices in your plots:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/markers_api.html">Markers</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html">Line styles</a></p></li>
+<li><p><a class="reference external" href="https://sites.google.com/view/paztronomer/blog/basic/python-colors">Colors</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">Legend</a></p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.grid.html">Grid lines</a></p></li>
+</ol>
+<p>There are an endless number of tools available to change the appearance of a plot, but those are some useful ones to have handy! You will naturally come across more plotting tools as and when you need them.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="making-plots-with-subplots">
+<h2>Making Plots with Subplots<a class="headerlink" href="#making-plots-with-subplots" title="Permalink to this heading">#</a></h2>
+<p>Often we would like to make a plot with multiple subplots. It is easy enough to do this using Python and we can reuse much of the code above (although there are some subtle changes we must take into account).</p>
+<p>Let’s once again consider our force-extension plot from above. You will notice that for every data point there is a small discrepancy between the point itself and the line of  best fit. This discrepancy is known as the residual, which may be either positive or negative depending on whether the data point sits below or above the line of best fit. In many areas of physics, it is common practice to plot the residuals for a given data set beneath the main plot. We will do this now using our understanding of loops!</p>
+<p>First of all, let’s make a loop to determine our residual for each data point:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slope</span> <span class="o">=</span> <span class="mf">0.011866666666666668</span> 
+<span class="n">intercept</span> <span class="o">=</span> <span class="mf">0.0020000000000000018</span> <span class="c1">#These values were determined from a linear regression.</span>
+
+<span class="c1"># Firstly, lets make an empty list to store our residual values in</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">force</span><span class="p">)):</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">extension</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="p">((</span><span class="n">force</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">slope</span><span class="p">)</span><span class="o">+</span><span class="n">intercept</span><span class="p">)</span>
+    <span class="n">residuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">residual</span><span class="p">)</span>
+
+<span class="c1"># The .append() function simply tells python to add what ever is in the bracket to the array it is attatched to (in this case residuals).</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.0020000000000000018, -0.011333333333333334, -0.010666666666666672, 0.009999999999999981, 0.020666666666666667, 0.0013333333333332975, 0.011999999999999955, -0.007333333333333414, -0.00666666666666671, -0.006000000000000005]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that the residuals have been calculated, we can make our subplot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we tell Python that we are making a figure with two plots (ax1 and ax2).</span>
+<span class="c1"># We have added additional arguements here, for example, we have said that we want </span>
+<span class="c1">#both plots to have a common x axis and that we want the ratio of the height of the </span>
+<span class="c1"># first plot to the second plot to be 4:1.5</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">gridspec_kw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height_ratios&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]})</span>
+
+<span class="c1"># Next, we make our individual plots as we did before, but this time using ax1. rather than .plt.</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">extension</span><span class="p">,</span> <span class="n">xerr</span> <span class="o">=</span> <span class="n">errorForce</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span> <span class="n">errorExtension</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;Fit&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Extension [m]&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Wire Extension as a function of Tensile Force Applied&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Now, moving on to the second axis.</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">force</span><span class="p">,</span><span class="n">residuals</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.02</span><span class="p">)</span> <span class="c1"># This changes the limits of the y-axis from the default.</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Residual [m]&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="c1"># This adds a grey horizontal line at y=0.</span>
+
+<span class="c1"># Methods common to both plots simply use .plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency MHz&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;Force_Extension_Resid.png&quot;</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0201bd19acce4c77f87c231d81745ee9e8e8e6ec4a64e6826f10441d8e1d0fcc.png" src="_images/0201bd19acce4c77f87c231d81745ee9e8e8e6ec4a64e6826f10441d8e1d0fcc.png" />
+</div>
+</div>
+<p>…as you can see we can easily make plots with subplots using Python!</p>
+<p>We are not limited to making stacked subplots, we can have any number of subplots and arrange them within a grid. Try to identify the differences between the codes used to make each different type of subplot on the following website: Creating multiple subplots using Python.</p>
+<p>Alternatively, we can create subplots using <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html">.add_subplot()</a>. This method does not constrain us to arranging our plots in a grid e.g. we may position 2 stacked plots on the left and a single larger plot on the right. Take a look <a class="reference external" href="https://matplotlib.org/stable/gallery/subplots_axes_and_figures/axes_margins.html#sphx-glr-gallery-subplots-axes-and-figures-axes-margins-py">here</a> and at the following example of how to do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Firstly, lets set the size of our figure. </span>
+<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Next we can add our subplots and using add_subplot(XYZ) define the placement of the subplots.</span>
+<span class="n">ax1</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9950d3b48e04530f5c1376742bbd9cd5ff852afe3d5c3a07627ae3e073287fb1.png" src="_images/9950d3b48e04530f5c1376742bbd9cd5ff852afe3d5c3a07627ae3e073287fb1.png" />
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="simple-linear-regression-suplimentary">
+<h2>Simple Linear Regression (Suplimentary)<a class="headerlink" href="#simple-linear-regression-suplimentary" title="Permalink to this heading">#</a></h2>
+<p>During your career as a physicist, you will routinely fit models to experimental data in order to extract information from it. In this section we will discuss the different types of fitting routines commonly employed and when it is most appropriate to use each type. We will focus on three main fitting routines: simple linear regression, weighted least squares, and orthogonal distance regression (ODR).</p>
+<div class="section" id="part-1-simple-linear-regression">
+<h3>Part 1: Simple Linear Regression<a class="headerlink" href="#part-1-simple-linear-regression" title="Permalink to this heading">#</a></h3>
+<p>A simple linear regression is a special case of least squares fitting (often referred to as “ordinary least squares”) and is the routine employed when the model we are fitting to our data is linear i.e. fitting a line of best fit. When using a simple linear regression, we make the assumption that the data has no associated error or that the errors are equal for each data point (this is often referred to as homoscedasticity).</p>
+<p>Lets begin by generating some linear data. We will add some noise to this data so that it is more representative of the type of data we would obtain from experimentation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#Generating our xData</span>
+<span class="n">xData</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span>
+
+<span class="c1">#Generating our noisy yData</span>
+<span class="n">yData</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span><span class="n">xData</span> <span class="o">+</span> <span class="mi">15</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span>
+<span class="n">yData</span> <span class="o">=</span> <span class="n">yData</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="c1">#Plotting our data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">yData</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;xData&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;yData&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5d96a2014497fc8cc8be72946ecef8321ee061d26fea7ceb72de9f41df9ba7ba.png" src="_images/5d96a2014497fc8cc8be72946ecef8321ee061d26fea7ceb72de9f41df9ba7ba.png" />
+</div>
+</div>
+<p>If we then use the linear regression tool from scipy.states, we would obtain the following fit:</p>
+</div>
+<div class="section" id="part-2-what-is-the-linregress-function-actually-doing">
+<h3>Part 2: What is the linregress function actually doing?<a class="headerlink" href="#part-2-what-is-the-linregress-function-actually-doing" title="Permalink to this heading">#</a></h3>
+<p>We now have a line of best fit determined computationally, but what were the calculations performed by the scipy.stats.linregress function when doing so? Lets first consider the model that we are aiming to fit, a straight line given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0bc1115a-d5d7-4b40-ac6d-a8d7244ed4ee">
+<span class="eqno">(1)<a class="headerlink" href="#equation-0bc1115a-d5d7-4b40-ac6d-a8d7244ed4ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y = mx+c, 
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> represents an independent variable, <span class="math notranslate nohighlight">\(y\)</span> represents a dependant variable, and <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span> represent the gradient and intercept of the line of best fit, respectively. In this example, we know what the values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are and we are trying to determine appropriate values for <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<p>With reference to the annotated plot below, we can see that for a given line of best fit, there is a vertical separation between each data point and the line. The discrepancies between the model line of best fit and data points are called the residuals. The least-squares fitting routine minimises the square of the residuals. We use the sum of the square rather than just the sum as some points lie below the line of best fit and others lie above, therefore if we were to just use the sum these values would cancel out and give a value close to zero.</p>
+<p><img alt="image" src="_images/SLR_plot_annotated.png" /></p>
+<p>The calculations to determine the value of gradient and intercept by minimising the sum of the squared residual values using the simple linear regression model are as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-05d99b8d-85f1-41b6-a7db-626a25a99c4b">
+<span class="eqno">(2)<a class="headerlink" href="#equation-05d99b8d-85f1-41b6-a7db-626a25a99c4b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    m = \frac{N\sum{x \cdot y} + \sum{x} \cdot\sum{y}}{N\sum{\left(x^2\right)} - \sum{\left(x\right)}^2},
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of data points, and:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e235d8f1-6eff-47f5-be57-dcdd8933fa2f">
+<span class="eqno">(3)<a class="headerlink" href="#equation-e235d8f1-6eff-47f5-be57-dcdd8933fa2f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    c = \frac{\sum{y} - m \cdot \sum{x}}{N}.
+\end{equation}\]</div>
+<p>Lets perform the calculations above to derive values for the gradient and intercept of the line of best fit for our noisy data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performing the calculations used to determine the gradient:</span>
+<span class="n">N_sum_xy</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xData</span> <span class="o">*</span> <span class="n">yData</span><span class="p">)</span> 
+<span class="n">sum_x_sum_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yData</span><span class="p">)</span> 
+<span class="n">N_sum_xsquared</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xData</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> 
+<span class="n">sum_x_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> 
+
+<span class="n">gradient</span> <span class="o">=</span> <span class="p">(</span><span class="n">N_sum_xy</span> <span class="o">-</span> <span class="n">sum_x_sum_y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">N_sum_xsquared</span> <span class="o">-</span> <span class="n">sum_x_squared</span><span class="p">)</span>
+
+<span class="c1">#Performing the calculations used to determine the intercept:</span>
+<span class="n">sum_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">yData</span><span class="p">)</span> 
+<span class="n">sum_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span>
+    
+<span class="n">intercept</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_y</span> <span class="o">-</span> <span class="n">gradient</span><span class="o">*</span><span class="n">sum_x</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">xData</span><span class="p">)</span>
+
+<span class="c1">#Plotting the data, line of best fit, and an annotation containing the gradient and intercept:  </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">yData</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">gradient</span><span class="o">*</span><span class="n">xData</span> <span class="o">+</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;xData&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;yData&#39;</span><span class="p">)</span>
+
+<span class="n">txt</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;The gradient is: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gradient</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> 
+          <span class="s1">&#39;The intercept is: &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">intercept</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">yData</span><span class="p">)</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="n">txt</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">5.0</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1fa87fff1d3ee53ee6a1254500dd83882e0d3ef2f6fa52110742ed7f8e07e2b0.png" src="_images/1fa87fff1d3ee53ee6a1254500dd83882e0d3ef2f6fa52110742ed7f8e07e2b0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="c1">#Performing the linear regression using the linregress function</span>
+<span class="n">FitResults</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">yData</span><span class="p">)</span>
+
+<span class="c1">#Plotting the data, line of best fit, and an annotation containing the gradient and intercept: </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">yData</span><span class="p">,</span> <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xData</span><span class="p">,</span> <span class="n">FitResults</span><span class="o">.</span><span class="n">slope</span><span class="o">*</span><span class="n">xData</span> <span class="o">+</span> <span class="n">FitResults</span><span class="o">.</span><span class="n">intercept</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;xData&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;yData&#39;</span><span class="p">)</span>
+
+<span class="n">txt</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;The gradient is: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">FitResults</span><span class="o">.</span><span class="n">slope</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> 
+          <span class="s1">&#39;The intercept is: &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">FitResults</span><span class="o">.</span><span class="n">intercept</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">yData</span><span class="p">)</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="n">txt</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">5.0</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/dbffc775f9df258e49ecc8eec5c68890a2e9e9f494a6ef5fcb976d296c272c83.png" src="_images/dbffc775f9df258e49ecc8eec5c68890a2e9e9f494a6ef5fcb976d296c272c83.png" />
+</div>
+</div>
+<p>From the figure above, it is apparent that the line of best fit we have calculated is the same as the one calculated by the scipy.stats.linregress function. We now understand what this function is doing!</p>
+</div>
+<div class="section" id="part-3-where-did-our-equations-come-from">
+<h3>Part 3: Where did our equations come from?<a class="headerlink" href="#part-3-where-did-our-equations-come-from" title="Permalink to this heading">#</a></h3>
+<p>In our example above we simply stated what the equations used to determine our optimal value of the gradient and intercept were, but we proivded no explaination as to how these equations were derived. This will be explained in this section.</p>
+<p>Note: An understanding of partial differention is required to perform this derivation.</p>
+<p>Once again we are going to consider this idea of the residual, we defined this earlier as the difference between the line of best fit and any given data point. Written mathematically this may be expressed as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-56241c9a-ff97-4eb7-96ec-68456fe1437c">
+<span class="eqno">(4)<a class="headerlink" href="#equation-56241c9a-ff97-4eb7-96ec-68456fe1437c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+R = y_{data}-y_{model},
+\end{equation}\]</div>
+<p>which may also be expressed as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-853f451b-b24f-4430-8742-7ea58be7ba18">
+<span class="eqno">(5)<a class="headerlink" href="#equation-853f451b-b24f-4430-8742-7ea58be7ba18" title="Permalink to this equation">#</a></span>\[\begin{equation}
+R = y_{data} - (m*x + c),
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are the gradient and intercept determined by our linear regression. Now we can consider the sum of the squared residuals:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7b093552-8295-43bd-a525-e0cfed1afa22">
+<span class="eqno">(6)<a class="headerlink" href="#equation-7b093552-8295-43bd-a525-e0cfed1afa22" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\sum{R^{2}}= \sum{[y_{data} - (mx + c)]^{2}}.
+\end{equation}\]</div>
+<p>In a simple linear regression, we want to minimise the value of the sum of the squared residuals. How do we do this? Another way to say this is we want to find the minimum of the function, which suggests that we need to do some differentiation! In this case we are going to take the partial derivatives of the function with respect to the terms we are trying to minimise <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span>:</p>
+<p><font color=blue>\begin{equation}
+\frac{\partial \sum R^{2}}{\partial m}= \sum \frac{\partial}{\partial m} \left([y_{data} - (mx + c)]^{2} \right)
+\end{equation}</font></p>
+<p>We can solve this partial differential by using the chain rule: We will bring down the power and then multiply by the partial differential of what is inside the brackets:</p>
+<p><font color=blue>\begin{equation}
+\frac{\partial \sum R^{2}}{\partial m}= \sum{2 \cdot [y_{data} - (mx + c)]\cdot -x}
+\end{equation}</font></p>
+<p>Similarly, when taking the partial differential with respect to <span class="math notranslate nohighlight">\(c\)</span> we get:</p>
+<p><font color=green>\begin{equation}
+\frac{\partial \sum R^{2}}{\partial c}= \sum \frac{\partial}{\partial c} \left([y_{data} - (mx + c)]^{2} \right) = \sum{2\cdot [y_{data} - (mx + c)]\cdot -1}
+\end{equation}</font></p>
+<p>Next, as we want to find the values of <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span> when the function is at a minimum, we set the partial differentials equal to zero:</p>
+<p><font color=blue>\begin{equation}
+-2\sum{[y_{data} - (mx + c)]\cdot x} = 0,
+\end{equation}</font></p>
+<p>and</p>
+<p><font color=green>\begin{equation}
+-2 \sum{[y_{data} - (mx + c)]} = 0.
+\end{equation}</font></p>
+<p>Finally, we solve these simeltanous equations to determine the values of <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span>. Let’s begin by rewriting our equations so that they are easier to solve. The <span class="math notranslate nohighlight">\(-2\)</span> terms disappear when we set the equations equal to zero:</p>
+<p><font color=blue>\begin{equation}
+\left(\sum{y_{data}} -\sum{mx} -\sum{c}\right)x = 0,
+\end{equation}</font></p>
+<p>and</p>
+<p><font color=green>\begin{equation}
+\sum{y_{data}} -\sum{mx} -\sum{c} = 0.
+\end{equation}</font></p>
+<p>As <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are constants, they may be taken out of the summations, such that:</p>
+<p><font color=blue>\begin{equation}
+\left(\sum{y_{data}} -m\sum{x} -(n\cdot c)\right)x = 0,
+\end{equation}</font></p>
+<p>and</p>
+<p><font color=green>\begin{equation}
+\sum{y_{data}} -m\sum{x} -(n\cdot c) = 0.
+\end{equation}</font></p>
+<p>Therefore, our equation for the intercept becomes:</p>
+<p><font color=green>\begin{equation}
+c = \frac{\sum{y_{data}}}{n} - \frac{m\sum{x}}{n}.
+\end{equation}</font></p>
+<p>which is equal to the equation we used in the previous section to determine our value of the intercept:</p>
+<p><font color=green>\begin{equation}
+c = \frac{\sum{y_{data}} - m\sum{x}}{n}.
+\end{equation}</font></p>
+<p>As the sum of the a set of values divided by the number of values is equal to the average value, the expression above can be expressed in terms of the mean values of y and x, <span class="math notranslate nohighlight">\(\bar{y}\)</span> and <span class="math notranslate nohighlight">\(\bar{x}\)</span>, respectively:</p>
+<p><font color=green>\begin{equation}
+c = \bar{y} - m \cdot \bar{x}.
+\end{equation}</font></p>
+<p>Using the expression for the intercept, we are able to determine a value for our gradient:</p>
+<p><font color=blue>\begin{equation}
+\sum{[y_{data} - (mx + \bar{y} - m \cdot \bar{x})]\cdot x} = 0,
+\end{equation}</font></p>
+<p><font color=blue>\begin{equation}
+\sum{[y_{data} - \bar{y} - m(x - \bar{x})]\cdot x} = 0.
+\end{equation}</font></p>
+<p>We may then solve the equation for m:</p>
+<p><font color=blue>\begin{equation}
+\sum{x(y_{data} - \bar{y})} - mx \sum{(x - \bar{x})} = 0,
+\end{equation}</font></p>
+<p><font color=blue>\begin{equation}
+\sum{x(y_{data} - \bar{y})} = mx \sum{(x - \bar{x})},
+\end{equation}</font></p>
+<p><font color=blue>\begin{equation}
+m=\frac{x\sum{(y_{data} - \bar{y})}} {x\sum{(x - \bar{x})}},
+\end{equation}</font></p>
+<p>which may be shown to be equal to the equation we used in the previous section to determine our value of the gradient:</p>
+<p><font color=blue>\begin{equation}
+m = \frac{N\sum{x \cdot y} + \sum{x} \cdot\sum{y}}{N\sum{\left(x^2\right)} - \sum{\left(x\right)}^2}.
+\end{equation}</font></p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="activities">
+<h2>Activities<a class="headerlink" href="#activities" title="Permalink to this heading">#</a></h2>
+<div class="section" id="plotting-functions">
+<h3>Plotting Functions<a class="headerlink" href="#plotting-functions" title="Permalink to this heading">#</a></h3>
+<p>Many of the topics that we come across in physics may come across as rather abstract, for example we will often look at relationships between variables that are described by equations too complex to visualise in our heads. In these instances, it may be useful to plot the equation and change the value of each variable to gain a better understanding of the relationship being described.</p>
+<p>In this activity, we will compound our learning of functions from last week and exercise our new understanding of how to visualise data. For each of the relationships below, define a function, and for a series of x values plot the corresponding y values. For each relationship, also plot (on the same set of axes) the function again, but this time having modified one or more variables. Ensure that the plots you create have the features of a high quality plot.</p>
+<p>Please define functions for and plot the relationships outlined below.</p>
+<p><strong>1. Straight Line of Best Fit.</strong></p>
+<p>This is what you will use most frequently during your first year experimental lab:</p>
+<div class="math notranslate nohighlight">
+\[ y(x) = mx +c \]</div>
+<p>where <span class="math notranslate nohighlight">\( m \)</span> and <span class="math notranslate nohighlight">\( c \)</span> are the gradient and intercept of the line of best fit, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Straight line of best fit task</span>
+
+<span class="c1"># Define function</span>
+
+<span class="c1"># Plot function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>2. The Gaussian Distribution</strong></p>
+<p>This is the normal distribution discussed in week one when considering normal statistics (mean, standard deviation and standard error):</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = a \exp{-\frac{(x-b)^2}{2c^2}}  \]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is the height of the distribution, <span class="math notranslate nohighlight">\(b\)</span> is the mean value of the distribution, and <span class="math notranslate nohighlight">\(c\)</span> is the standard deviation of the distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gaussian distribution task</span>
+
+<span class="c1"># Define function</span>
+
+<span class="c1"># Plot function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3. The Maxwell-Boltzmann distribution</strong></p>
+<p>This equation was introduced in your thermal physics lectures. It is a probability distribution that describes the probability that a molecule has a particular speed for a given molecular mass and temperature:</p>
+<div class="math notranslate nohighlight">
+\[ f(v) = \frac{4}{\sqrt{\pi}} \left(\frac{m}{2k_BT}\right)^{3/2}  v^2 \exp{\frac{-mv^2}{2k_BT}}\]</div>
+<p>where <span class="math notranslate nohighlight">\( m \)</span> is the mass of the molecule, <span class="math notranslate nohighlight">\( T \)</span> is the temperature, <span class="math notranslate nohighlight">\( v \)</span> is the velocity of the molecule, and <span class="math notranslate nohighlight">\( k_B \)</span> is the Boltzmann constant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Maxwell-Boltzmann task</span>
+
+<span class="c1"># Define function</span>
+
+<span class="c1"># Plot function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>4. The Projectile Equation</strong></p>
+<p>This was introduced in your very first mechanics lecture. It allows you to determine the vertical height of a projectile, <span class="math notranslate nohighlight">\(y\)</span>, at a given horizontal distance  from the projectile origin, <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ y(x) = x \tan(\theta) - \frac{gx^2}{2v_0^2\cos^2(\theta)} \]</div>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is acceleration due to gravity and  <span class="math notranslate nohighlight">\(\theta\)</span> is the angle, relative to the horizontal plane, that the projectile is launched at.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Projectile Equation task</span>
+
+<span class="c1"># Define function</span>
+
+<span class="c1"># Plot function</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fitting-and-plotting-data">
+<h3>Fitting and Plotting Data<a class="headerlink" href="#fitting-and-plotting-data" title="Permalink to this heading">#</a></h3>
+<p>Two sets of linear data have been provided. You are tasked with performing a manual regression for each dataset using whatever tool you feel most comfortable using (i.e. you may wish to define a function to perform the regression or perform the calculation in a spreadsheet/generally using Python).</p>
+<p>Once you have performed the regression and determined values for the gradients and intercepts, create two plots in the same figure using subplots, one for each dataset. Each subplot should contain the raw data, the line of best fit and all of the features of a high quality plot.</p>
+<p><em>Hint: when adding the line of best fits to the plot you may wish to use the straight line function you defined in the previous task.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fitting and Plotting Task</span>
+
+<span class="c1"># Import data</span>
+
+<span class="c1"># Manual regression / define fitting function</span>
+
+<span class="c1"># Plot data and lines of best fit on subplots.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Wk3_Conditional_Statements_and_Loops.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Conditional Statements and Loops</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Wk4_Simple_Linear_Regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Simple Linear Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-features-of-a-high-quality-plot">The Features of a High Quality Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-make-high-quality-plots-in-python">How Do We Make High Quality Plots in Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-plots-with-subplots">Making Plots with Subplots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression-suplimentary">Simple Linear Regression (Suplimentary)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-simple-linear-regression">Part 1: Simple Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-what-is-the-linregress-function-actually-doing">Part 2: What is the linregress function actually doing?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-where-did-our-equations-come-from">Part 3: Where did our equations come from?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-functions">Plotting Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-and-plotting-data">Fitting and Plotting Data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Ross Mathieson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

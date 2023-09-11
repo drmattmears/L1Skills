@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Measurements, Errors and Uncertainty &#8212; PHYS11006 - Computing Skills Workshop</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Wk1_Measurements_Errors_and_Uncertainty';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Performing Calculations with Computers II" href="Wk2_Performing_Calculations_with_Computers_II.html" />
+    <link rel="prev" title="Performing Calculations with Computers I" href="Wk1_Performing_Calculations_with_Computers_I.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to PHYS11006 Computing Skills
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 1</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk1_Performing_Calculations_with_Computers_I.html">Performing Calculations with Computers I</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Measurements, Errors and Uncertainty</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 2</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Performing_Calculations_with_Computers_II.html">Performing Calculations with Computers II</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk2_Functions_and_Modules.html">Functions and Modules</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 3</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Conditional_Statements_and_Loops.html">Conditional Statements and Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk3_Visualising_Data_and_Linear_Regression.html">Visualising Data and Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 4</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk4_Simple_Linear_Regression.html">Simple Linear Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 5</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Solving_Coding_Problems.html">Solving Coding Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Wk5_Artificial_Intelligence.html">Artificial Intelligence (AI)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Week 6</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Wk6_Computing_Skills_Assessment.html">Computing Skills Assessment</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FWk1_Measurements_Errors_and_Uncertainty.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Wk1_Measurements_Errors_and_Uncertainty.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Measurements, Errors and Uncertainty</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-precision-and-types-of-error">Accuracy, Precision and Types of Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-standard-deviation-standard-error">The Mean, Standard Deviation &amp; Standard Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reporting-values-and-associated-errors">Reporting Values and Associated Errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="measurements-errors-and-uncertainty">
+<h1>Measurements, Errors and Uncertainty<a class="headerlink" href="#measurements-errors-and-uncertainty" title="Permalink to this heading">#</a></h1>
+<p>In the skills lecture on Monday you were introduced to the idea of measurement errors and uncertainty. Provided below is a summary of the topics covered in your lecture. This information was taken from Measurements and their Uncertainties: <a class="reference external" href="https://find.shef.ac.uk/primo-explore/fulldisplay?docid=44SFD_ALMA_DS21177067650001441&amp;context=L&amp;vid=44SFD_VU2&amp;lang=en_US&amp;search_scope=SCOP_EVERYTHING&amp;adaptor=Local%20Search%20Engine&amp;tab=everything&amp;query=any,contains,hughes%20and%20hase&amp;offset=0">A Practical Guide to Modern Error Analysis</a> by Hughes and Hase, which is a useful book that covers the content at an accessible level.</p>
+<hr class="docutils" />
+<div class="section" id="accuracy-precision-and-types-of-error">
+<h2>Accuracy, Precision and Types of Error<a class="headerlink" href="#accuracy-precision-and-types-of-error" title="Permalink to this heading">#</a></h2>
+<p>When we take a measurement, we cannot say with absolute certainty what the value of the measurement is, instead we report our best estimate along with its associated uncertainty (or error). A value reported with a small uncertainty may be considered to be <strong>precise</strong>, but this does not necessarily mean that it is <strong>accurate</strong>.</p>
+<p>If we were to measure something many times, we would be able to plot a distribution of our measurements (e.g. the number of times we measure the value to be x). Our best estimate of the value would be equal to the mean of our measured values. If our distribution of measurements is narrow (the spread of our measurements is small) we would say that the best estimate is precise (plots a and c) and if our best estimate was close to the known value (plots a and b) we would say it is accurate.</p>
+<p><img alt="image" src="_images/PrecisionAccuracy.png" /></p>
+<p>Our measurement can be both accurate and precise (a), accurate but imprecise (b), precise but inaccurate (c), or neither accurate nor precise (d).</p>
+<p>The source of the error associated with a measurement may be attributed to many factors, but these may be categorised as either <strong>random errors</strong>, <strong>systematic errors</strong> or <strong>mistakes</strong>:</p>
+<ul class="simple">
+<li><p><strong>Random errors</strong> may be characterised by a large spread in the measurements that we take and therefore impact the precision of our measurement. Although we take care to control the impact of all external variables in an experiment, parameters out of our control will still impact the measurements we take leading to a distribution. For example, if I roll a toy car down a ramp and measure how far it travels, I can take care to ensure the car is released from the same point on the ramp each time, but I cannot control small fluctuations in temperature or the direction of currents in the air.</p></li>
+<li><p><strong>Systematic errors</strong> are characterised by a shifting of our measurements away from the known value, these affect all measurements taken and impact the accuracy of our measurement. Using the example above, if I were to measure the distance the toy car had travelled, but started my measurement 10 cm away from the point of release, this would shift my measured distance away from the distance the car really travelled.</p></li>
+<li><p><strong>Mistakes</strong>. These may be difficult to spot and can negatively impact the quality of the data we are using. A mistake may be as simple as recording a value of 3.14 as 3.41. It would be difficult to determine if a mistake has been made or the value is just larger than anticipated when performing analysis. To reduce the frequency of mistakes we make, we should take care when reading scales, converting units and using measurement equipment.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-mean-standard-deviation-standard-error">
+<h2>The Mean, Standard Deviation &amp; Standard Error<a class="headerlink" href="#the-mean-standard-deviation-standard-error" title="Permalink to this heading">#</a></h2>
+<p>When we take a series of measurements, we will measure a distribution of values such as those shown in the histograms above. The mean of these values is taken as our best estimate as taking the mean is the best way to reduce the impact of random errors in our measurements. The mean is calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{x} = \frac{1}{N}\sum^{N}_{i=1}x_i = \frac{1}{N}\left(x_1 + x_2 + x_3 + ... + x_N \right).
+\]</div>
+<p>Another important property to consider is the spread of our distribution, the size of the spread allows us to determine the precision of our measured value, with a smaller spread corresponding to a more precise value. The statistical approach to determining the spread of our distribution is to calculate the <strong>standard deviation</strong>.</p>
+<p>For a given data point in a distribution, there will be some deviation between it and the mean:</p>
+<div class="math notranslate nohighlight">
+\[ 
+d_i = x_i - \bar{x}
+\]</div>
+<p>Across the entire distribution the average of the deviations is likely going to sum to zero assuming that all of the data points are evenly distributed around the mean, therefore we cannot use the sum of deviations as a measure of the distribution spread. The square of the deviations will be positive regardless of whether or not the deviation is positive or negative, therefore we can calculate the average of the squared deviations, this is known as the <strong>variance</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{N-1} = \sqrt{\frac{1}{N}\left(d_1^2 +d_2^2 +d_3^2 + ... + d_N^2\right)},
+\]</div>
+<p>which is more commonly expressed as:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{N-1} = \sqrt{\frac{\sum{\left(x_i-\bar{x}\right)^2}}{N_1}}.
+\]</div>
+<p>The function is normalised by N-1 rather than N as the mean has already been determined using this dataset, meaning that there is one less independent value to be used when calculating the variance.</p>
+<p>The <strong>standard deviation</strong> is a measure of how much the individual measurements in a sample differ from the mean value of all the measurements in that sample.</p>
+<p>To determine the best estimate of the error associated with our mean value, we must take into account the number of measurements in the sample. As we increase the number of measurements used to determine our best estimate, the magnitude of the associated error should become smaller. The best estimate of the error associated with our mean value is <strong>the standard deviation of the mean (SODM)</strong>, which is more commonly referred to as the <strong>standard error</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha = \frac{\sigma_{N-1}}{\sqrt{N}}
+\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="reporting-values-and-associated-errors">
+<h2>Reporting Values and Associated Errors<a class="headerlink" href="#reporting-values-and-associated-errors" title="Permalink to this heading">#</a></h2>
+<p>Once we have made our measurements, determined the mean value of our measurements and the standard error associated with the mean, we can then report our final value. When doing so it is important that we present this value appropriately. In general, the we report our value using the following convention:</p>
+<ul class="simple">
+<li><p>Round the error to an appropriate number of significant figures (typically one),</p></li>
+<li><p>Report the best estimate value to the same precision as the error,</p></li>
+<li><p>Report the best estimate and the associated error with units.</p></li>
+</ul>
+<p>For example, if my mean and standard error were calculated to be:</p>
+<div class="math notranslate nohighlight">
+\[
+(23.47652345 \pm 0.00383421), 
+\]</div>
+<p>I would report my final value as:</p>
+<div class="math notranslate nohighlight">
+\[
+(23.477 \pm 0.004) \, \text{Units}.
+\]</div>
+<p>If reporting very small or very large numbers, it may also be appropriate to use standard form, for example:</p>
+<div class="math notranslate nohighlight">
+\[
+(2,347,652,345 \pm 383,421),
+\]</div>
+<p>could be reported as:</p>
+<div class="math notranslate nohighlight">
+\[
+(23.477 \pm 0.004) 10^8 \, \text{Units}.
+\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="activities">
+<h2>Activities<a class="headerlink" href="#activities" title="Permalink to this heading">#</a></h2>
+<p>The aim of this exercise is to continue to familiarise yourself with how to perform calculations using computers and gain a better understanding of the statistics we use in Physics.</p>
+<p>Three sets of data are provided in <a class="reference external" href="https://docs.google.com/spreadsheets/d/1Thw24laZxmup0ZAln7O16Qv0IBVCFp-7IBFb5TZfTf0/edit?pli=1#gid=0">activity 2 - data sets</a> - make a copy of this spreadsheet to use for these activities. For each data set you must:</p>
+<ol class="arabic simple">
+<li><p>calculate the mean of each data set,</p></li>
+<li><p>calculate standard deviation of each data set,</p></li>
+<li><p>calculate standard error of each data set,</p></li>
+<li><p>present the best estimates and their associated uncertainties appropriately.</p></li>
+</ol>
+<p><strong>Use Google sheets to do this for the first data set</strong>. A template of a standard deviation table has been provided for you to modify and use. If you have never calculated standard deviations before, it is worth your time performing the calculation using the table to gain a better understanding of the formula.</p>
+<p><strong>Use the Python interpreter for the second data set</strong>. You can use this however you see fit - remember that the interpreter is great to use as a simple calculator!</p>
+<p><strong>Use the Jupyter Notebook environment to do this for the third data set</strong>.</p>
+<p>You are free to use any existing knowledge of using Google Sheets or Python to quickly check your calculations. The data generated for this task follows a normal distribution (a gaussian distribution). An understanding of the characteristics of a normal distribution is very important in statistics and Physics.</p>
+<p>Plot the first distribution as <a class="reference external" href="https://blog.hubspot.com/marketing/histogram-google-sheets">a histogram using google sheets</a> to better visualise this data. Once again, you are free to use any existing knowledge of Google Sheets or Python to do this.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Wk1_Performing_Calculations_with_Computers_I.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Performing Calculations with Computers I</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Wk2_Performing_Calculations_with_Computers_II.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Performing Calculations with Computers II</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-precision-and-types-of-error">Accuracy, Precision and Types of Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-standard-deviation-standard-error">The Mean, Standard Deviation &amp; Standard Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reporting-values-and-associated-errors">Reporting Values and Associated Errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activities">Activities</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr Ross Mathieson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
